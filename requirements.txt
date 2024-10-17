@@ -1,4 +1,9 @@
 numpy
 pandas
 torch
+
+python-dotenv
+
+langchain-openai
+
 gradio
