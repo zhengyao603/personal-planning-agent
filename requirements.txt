@@ -1,9 +1,17 @@
 numpy
 pandas
 torch
+cryptography
 
 python-dotenv
 
+pymysql
+pydantic
+
+langchain
+langchain-core
 langchain-openai
+langchain_community
+langsmith
 
 gradio

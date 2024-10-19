@@ -9,3 +9,11 @@
 
 # environment variables
 .env
+
+# mysql mounted storage
+/database/mysql/data
+/database/mysql/log
+/database/mysql/conf.d
+
+# python runtime cache
+__pycache__/
