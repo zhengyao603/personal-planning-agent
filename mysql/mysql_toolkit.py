@@ -1,13 +1,18 @@
 from typing import List
-
-from langchain_core.tools import Tool, StructuredTool
 from pydantic import BaseModel, Field
 
-from database.mysql.mysql_config import get_mysql_connection, sql_execute
+from langchain_core.tools import StructuredTool
+
+from mysql.mysql_config import get_mysql_connection, sql_execute
+
+import os, sys
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append(BASE_DIR)
+from component.utils import load_config
 
 class ScheduleArgs(BaseModel):
     date: str = Field(description="""Date of schedule, need to be in "yyyy-mm-dd" format, Example: "2024-10-01" """)
-    desc: str = Field(description="""Description of schedule, need to be at most 255 characters, Example: "play with my friend Julia" """)
+    desc: str = Field(description="""Description of schedule, no more than 255 characters, Example: "play with my friend Julia" """)
 
 def schedule_insert(date: str, desc: str) -> None:
     """
@@ -18,8 +23,10 @@ def schedule_insert(date: str, desc: str) -> None:
         desc: Description of new schedule
     """
 
+    conf = load_config()["mysql"]
+
     insert_sql = f"""INSERT INTO t_schedule(date, description) VALUES ("{date}", "{desc}");"""
-    conn = get_mysql_connection("localhost", 3306, "user", "123456", "db_agent")
+    conn = get_mysql_connection(conf["host"], conf["port"], conf["user"], conf["password"], conf["database"])
     sql_execute(conn, insert_sql)
 
 def schedule_delete(date: str) -> None:
@@ -30,9 +37,11 @@ def schedule_delete(date: str) -> None:
         date: Date of existing schedule
     """
 
+    conf = load_config()["mysql"]
+
     # TODO: maybe optimize the logic to index db with both date and description (requires vector db and similarity??)
     delete_sql = f"""DELETE FROM t_schedule WHERE date="{date}";"""
-    conn = get_mysql_connection("localhost", 3306, "user", "123456", "db_agent")
+    conn = get_mysql_connection(conf["host"], conf["port"], conf["user"], conf["password"], conf["database"])
     sql_execute(conn, delete_sql)
 
 def schedule_update(date: str, desc: str) -> None:
@@ -44,8 +53,10 @@ def schedule_update(date: str, desc: str) -> None:
         desc: Description of modified schedule
     """
 
+    conf = load_config()["mysql"]
+
     update_sql = f"""UPDATE t_schedule SET description='{desc}' WHERE date="{date}";"""
-    conn = get_mysql_connection("localhost", 3306, "user", "123456", "db_agent")
+    conn = get_mysql_connection(conf["host"], conf["port"], conf["user"], conf["password"], conf["database"])
     sql_execute(conn, update_sql)
 
 def get_mysql_toolkit() -> List[StructuredTool]:

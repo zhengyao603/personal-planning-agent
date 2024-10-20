@@ -13,6 +13,6 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      - D:\\HKUST\\CourseWork\\CSIT6910D Independent Project\\personal-schedule-planning-agent\\database\\mysql\\data:/var/lib/mysql
-      - D:\\HKUST\\CourseWork\\CSIT6910D Independent Project\\personal-schedule-planning-agent\\database\\mysql\\conf.d:/etc/mysql/conf.d
-      - D:\\HKUST\\CourseWork\\CSIT6910D Independent Project\\personal-schedule-planning-agent\\database\\mysql\\log:/var/log
+      - D:\\HKUST\\CourseWork\\CSIT6910D Independent Project\\personal-schedule-planning-agent\\mysql\\data:/var/lib/mysql
+      - D:\\HKUST\\CourseWork\\CSIT6910D Independent Project\\personal-schedule-planning-agent\\mysql\\conf.d:/etc/mysql/conf.d
+      - D:\\HKUST\\CourseWork\\CSIT6910D Independent Project\\personal-schedule-planning-agent\\mysql\\log:/var/log

@@ -1,4 +1,4 @@
-# pycharm
+# pycharm cache
 /.idea
 
 # virtual environment
@@ -11,9 +11,12 @@
 .env
 
 # mysql mounted storage
-/database/mysql/data
-/database/mysql/log
-/database/mysql/conf.d
+/mysql/data
+/mysql/log
+/mysql/conf.d
+
+# chroma related storage
+/chroma/data/
 
 # python runtime cache
 __pycache__/
