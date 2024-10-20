@@ -2,16 +2,15 @@ numpy
 pandas
 torch
 cryptography
-
 python-dotenv
-
 pymysql
+pyyaml
 pydantic
+gradio
 
 langchain
 langchain-core
 langchain-openai
 langchain_community
+langchain-chroma
 langsmith
-
-gradio
