@@ -13,8 +13,3 @@ def get_chroma_db() -> Chroma:
         persist_directory=load_config()["chroma"]["directory"],
     )
     return chroma_db
-
-if __name__ == '__main__':
-    from dotenv import load_dotenv
-    load_dotenv()
-    get_chroma_db()
