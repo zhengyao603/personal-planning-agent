@@ -1,4 +1,3 @@
-from dotenv import load_dotenv
 from langchain.agents import AgentExecutor, create_tool_calling_agent
 from langchain.chains.base import Chain
 from langchain_core.output_parsers import StrOutputParser
@@ -7,8 +6,8 @@ from langchain_core.tools import create_retriever_tool
 from langchain_openai import ChatOpenAI
 from langchain_community.agent_toolkits import SQLDatabaseToolkit, create_sql_agent
 
-from utils import load_config
-from prompts import (openai_tools_agent_prompt_template, sql_route_prompt_template,
+from component.utils import load_config
+from component.prompts import (openai_tools_agent_prompt_template, sql_route_prompt_template,
                      vector_route_prompt_template, task_route_prompt_template, default_template)
 
 import os, sys
@@ -181,19 +180,3 @@ class SchedulePlanningAgent:
             return self.vector_full_chain
         else:
             return self.default_chain
-
-
-if __name__ == '__main__':
-    load_dotenv()
-
-    # set_debug( True)
-    agent = SchedulePlanningAgent()
-    # agent.sql_full_chain.invoke({"input": "I will have an interview for Bytedance backend engineer on Oct 25th 2024. Help me record this schedule."})
-    # agent.sql_full_chain.invoke({"input": "I will cancel the schedule on Oct 25th 2024. Help me delete this schedule."})
-    # agent.sql_full_chain.invoke({"input": "Can you please help me check what is my schedule on Oct 25th 2024?"})
-    # agent.vector_manipulate_agent.invoke({"input": "I need you to help me create a new memo. I have some new understanding with docker virtualized network logic, it is interacting with our PC network card, and do optimization on top of hardware. FYI, I want the title of my memo to be 'docker usage reflection', and today's date is '2024-10-20'."})
-    # agent.vector_manipulate_agent.invoke({"input": "I need you to help me create a new memo. I want to record my reflection on the movie The Avengers 3, it is just amazing and I love Spider Man !!! Just name the memo with 'best movie ever', and today is '2024/10/01' """})
-    # agent.vector_full_chain.invoke({"input": "I want to create a new memo. I got an intern offer from Tencent!!!! I guess i will definitely accept the offer. Wonderful day ever, love you all!!! """})
-    # agent.full_chain.invoke({"input": "I want to create a new memo. I got an intern offer from Tencent!!!! I guess i will definitely accept the offer. Wonderful day ever, love you all!!! Name it with '人生的第二个起点!!!' """})
-    agent.full_chain.invoke({"input": "please help me check my memo for interview on Oct 5th. "})
-    # agent.vector_query_agent.invoke({"input": ""})
