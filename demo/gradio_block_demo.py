@@ -1,30 +1,55 @@
 import gradio as gr
+import whisper
+import pyttsx3
+import tempfile
 
-def chat_with_ai(user_input, chat_history):
-    ai_response = f"AI: {user_input[::-1]}"  # 示例：简单地反转用户输入作为 AI 回复
-    chat_history.append((user_input, ai_response))
-    return chat_history
+try:
+    engine = pyttsx3.init()
+except Exception as e:
+    print(f"Failed to initialize TTS engine: {e}")
+    engine = None
 
-def main():
-    with gr.Blocks() as demo:
-        gr.Markdown("## AI 聊天界面")
+def text_to_speech(text):
+    # 将文本转换为语音
+    temp_file = tempfile.NamedTemporaryFile(delete=False, suffix=".mp3")
+    temp_file_name = temp_file.name
+    temp_file.close()
 
-        # 用于显示对话的组件
-        chat_box = gr.Chatbot(label="对话")
+    engine.save_to_file(text, temp_file_name)
+    engine.runAndWait()
 
-        # 用于输入的文本框
-        user_input = gr.Textbox(placeholder="输入你的消息...", label="输入框")
+    return temp_file_name
 
-        # 用于更新对话的按钮
-        send_button = gr.Button("发送")
 
-        # 定义按钮点击事件
-        send_button.click(
-            fn=chat_with_ai,
-            inputs=[user_input, chat_box],
-            outputs=[chat_box]
-        )
-    demo.launch()
+def chatbot(user_input, chat_history):
+    print(user_input)
+    transcription_model = whisper.load_model("base")
+    transcription_result = transcription_model.transcribe(user_input)
+    print(transcription_result["text"])
 
-if __name__ == "__main__":
-    main()
+    # 忽略输入，始终返回 "hello world"
+    response_text = "hello world"
+    chat_history.append((transcription_result["text"], response_text))
+    response_audio = text_to_speech(response_text)
+    print(response_audio)
+
+    return chat_history, response_audio
+
+
+# 创建 Gradio 接口
+with gr.Blocks() as demo:
+    gr.Markdown("## Personal Planning Agent😊")
+    chat_box = gr.Chatbot(label="chatbot", show_label=False)
+
+    audio_input = gr.Audio(sources=["microphone"], type="filepath", label="Input Audio")
+    audio_output = gr.Audio(label="Response Audio")
+
+    submit_button = gr.Button("Submit")
+    submit_button.click(
+        fn=chatbot,
+        inputs=[audio_input, chat_box],
+        outputs=[chat_box, audio_output]
+    )
+
+# 启动接口
+demo.launch()
