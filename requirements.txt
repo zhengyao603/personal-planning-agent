@@ -2,15 +2,18 @@ numpy
 pandas
 torch
 cryptography
-python-dotenv
-pymysql
-pyyaml
-pydantic
-gradio
+python-dotenv~=1.0.1
+pymysql~=1.1.1
+pyyaml~=6.0.2
+pydantic~=2.9.2
+gradio~=5.6.0
+openai-whisper~=20240930
 
-langchain
-langchain-core
-langchain-openai
+langchain~=0.3.7
+langchain-core~=0.3.19
+langchain-openai~=0.2.8
 langchain_community
 langchain-chroma
 langsmith
+pyttsx3~=2.98
+langchain-community~=0.3.7

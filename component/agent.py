@@ -1,12 +1,12 @@
-from langchain.agents import AgentExecutor, create_tool_calling_agent
-from langchain.chains.base import Chain
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnableParallel, RunnableLambda, RunnableSerializable
 from langchain_core.tools import create_retriever_tool
+from langchain.chains.base import Chain
+from langchain.agents import AgentExecutor, create_tool_calling_agent
 from langchain_openai import ChatOpenAI
 from langchain_community.agent_toolkits import SQLDatabaseToolkit, create_sql_agent
 
-from component.utils import load_config
+from component.utils import load_config, current_time
 from component.prompts import (openai_tools_agent_prompt_template, sql_route_prompt_template,
                      vector_route_prompt_template, task_route_prompt_template, default_template)
 
@@ -19,6 +19,13 @@ from chroma.chroma_config import get_chroma_db
 from chroma.chroma_toolkit import get_chroma_toolkit
 
 class SchedulePlanningAgent:
+    _instance = None
+
+    def __new__(cls, *args, **kwargs):
+        if cls._instance is None:
+            cls._instance = super(SchedulePlanningAgent, cls).__new__(cls, *args, **kwargs)
+        return cls._instance
+
     def __init__(self):
         self._model = None
         self._sql_dql_agent = None
@@ -99,7 +106,7 @@ class SchedulePlanningAgent:
                     verbose=True
                 )
             except Exception as e:
-                print(f"Error creating VECTOR MANIPULATE agent: {e}")
+                print(f"Error creating VECTOR QUERY agent: {e}")
                 raise
         return self._vector_query_agent
 
@@ -149,7 +156,7 @@ class SchedulePlanningAgent:
 
     @property
     def full_chain(self) -> RunnableSerializable:
-        return RunnableParallel({"task": self.task_route_chain, "input": lambda x: x["input"]}) | RunnableLambda(
+        return RunnableParallel({"task": self.task_route_chain, "input": lambda x: x["input"] + f" FYI: Current Time is {current_time()}."}) | RunnableLambda(
             self.task_route
         )
 

@@ -1,1 +1,1 @@
-# personal-schedule-planning-agent
+# personal-planning-agent

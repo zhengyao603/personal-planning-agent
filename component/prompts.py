@@ -46,5 +46,5 @@ Classification:"""
 
 default_template = PromptTemplate.from_template(
     """Please just output 'Sorry, I don't know what you meant.'
-    Not output any other words. Just output the sentence 'Sorry, I don't know what you meant.' """
+    Do not respond with any other words. Just output the sentence 'Sorry, I don't know what you meant.' """
 )
