@@ -1,0 +1,123 @@
+Schedule:
+As a MySQL expert. I want you to to generate 50 example data rows according to the MySQL table scheme I provide you. You need to respond me with valid sql commands that do the insertion.
+The scheme is:
+```sql
+CREATE TABLE IF NOT EXISTS t_schedule (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    date DATE NOT NULL,
+    description VARCHAR(255),
+    created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+)
+```
+Example of two data row insertion sql could be
+```sql
+INSERT INTO t_schedule (date, description) VALUES ('2024-10-01', 'Prepare work report'), ('2024-10-02', 'IP Final Presentation');
+```
+Try to make the date column of the 50 example data all being between '2024-12-01' to '2024-12-31', and order the sql commands based on the date.
+
+As a perfect LLM performance evaluator. I want you to generate 50 questions and corresponding answers regarding to the sql data I provide you. The QA pair need to be in tuple format, that is, ("question", "answer")
+The sql data is:
+```sql
+INSERT INTO t_schedule (date, description) VALUES
+('2024-12-01', 'Project kickoff meeting'),
+('2024-12-01', 'Review quarterly results'),
+('2024-12-02', 'Team building exercise'),
+('2024-12-02', 'Client follow-up call'),
+('2024-12-03', 'Update project roadmap'),
+('2024-12-03', 'Prepare marketing strategy'),
+('2024-12-04', 'Budget planning session'),
+('2024-12-04', 'Technical workshop'),
+('2024-12-05', 'Sales team meeting'),
+('2024-12-05', 'Product launch review'),
+('2024-12-06', 'Monthly finance audit'),
+('2024-12-06', 'Organize office event'),
+('2024-12-07', 'Weekly team sync'),
+('2024-12-07', 'Customer feedback analysis'),
+('2024-12-08', 'Social media planning'),
+('2024-12-08', 'New hire orientation'),
+('2024-12-09', 'System maintenance'),
+('2024-12-09', 'Review compliance policies'),
+('2024-12-10', 'Prepare annual report'),
+('2024-12-10', 'Internal training session'),
+('2024-12-11', 'Evaluate software tools'),
+('2024-12-11', 'Holiday party planning'),
+('2024-12-12', 'Supplier meeting'),
+('2024-12-12', 'Inventory assessment'),
+('2024-12-13', 'Board of directors meeting'),
+('2024-12-13', 'Industry conference'),
+('2024-12-14', 'Research competitor strategies'),
+('2024-12-14', 'Project milestone review'),
+('2024-12-15', 'Update employee handbook'),
+('2024-12-15', 'IT security audit'),
+('2024-12-16', 'Prepare for product demo'),
+('2024-12-16', 'Conduct market survey'),
+('2024-12-17', 'Team retrospective'),
+('2024-12-17', 'Finalize partnership agreement'),
+('2024-12-18', 'Plan community outreach'),
+('2024-12-18', 'Review team performance'),
+('2024-12-19', 'Annual strategy meeting'),
+('2024-12-19', 'Update corporate website'),
+('2024-12-20', 'Design sprint planning'),
+('2024-12-20', 'Office renovation discussion'),
+('2024-12-21', 'Prepare for trade show'),
+('2024-12-21', 'Product feedback session'),
+('2024-12-22', 'Holiday season preparation'),
+('2024-12-22', 'Legal compliance review'),
+('2024-12-23', 'Finalize year-end bonuses'),
+('2024-12-23', 'Plan for office relocation'),
+('2024-12-24', 'Christmas Eve - Office closed'),
+('2024-12-25', 'Christmas Day - Office closed'),
+('2024-12-26', 'Post-holiday debrief'),
+('2024-12-27', 'Year-end financial review');
+```
+You can only generate QA pairs related to the data I provide you. Some examples generation could be:
+("What are the schedules I do have on December 1st, 2024?", "You have a project kickoff meeting and quarterly results review.")
+("Do I have any schedules on December 31th, 2024?", "No, you are free on December 31th, 2024.")
+
+------------------------------------------------------------------------------------------------------------------------
+Memo:
+As a expert English writer. I want you to write three computer science concept learning memos for me.
+Restrict the length of memo content to 200-300 words.
+Pretend you just learned some new CS concepts, e.g. "machine learning", "cloud computing", "golang backend development".
+You need to provide both name and content of the memo, also with a mock date in the format "yyyy-mm-dd".
+
+As a perfect RAG performance evaluator. I want you to generate 50 questions and corresponding answers regarding to the three memo document I provide you. The QA pair need to be in tuple format, that is, ("question", "answer")
+
+<First Memo>
+Memo: Understanding Machine Learning Basics
+Date: 2023-04-15
+
+Today, I delved into the fundamentals of machine learning (ML), a subfield of artificial intelligence that focuses on building systems capable of learning from data and improving their performance over time without explicit programming. The core idea is to use algorithms to parse data, learn from it, and then make informed decisions based on the learned patterns.
+
+Key concepts include supervised and unsupervised learning. Supervised learning involves training a model on a labeled dataset, meaning the output is known. Common algorithms in this category are linear regression and decision trees. Unsupervised learning, on the other hand, deals with unlabeled data, and the system tries to find hidden patterns or intrinsic structures. Clustering and association are popular techniques here.
+
+Understanding the importance of data quality and preprocessing is crucial, as garbage in results in garbage out. Feature selection and extraction are vital steps that enhance model performance. Tools like Python's scikit-learn library are invaluable for implementing these algorithms.
+
+Overall, machine learning is transforming industries by enabling data-driven decision-making, and mastering its basics is essential for future technological advancements.
+
+<Second Memo>
+Memo: Exploring Cloud Computing
+Date: 2023-05-10
+
+Today, I explored cloud computing, a paradigm that enables on-demand network access to a shared pool of configurable computing resources. This includes servers, storage, applications, and services that can be rapidly provisioned with minimal management effort.
+
+Cloud computing is categorized into three main service models: Infrastructure as a Service (IaaS), Platform as a Service (PaaS), and Software as a Service (SaaS). IaaS provides virtualized computing resources over the internet, PaaS offers a platform allowing customers to develop, run, and manage applications, and SaaS delivers software applications over the web.
+
+The benefits of cloud computing are significant, including cost efficiency, scalability, flexibility, and improved collaboration. However, it also comes with challenges such as security concerns and potential downtime.
+
+Major providers like Amazon Web Services (AWS), Microsoft Azure, and Google Cloud Platform offer a variety of services that cater to different organizational needs. As businesses increasingly shift to the cloud, understanding these services and their applications is critical for leveraging digital transformation.
+
+<Third Memo>
+Memo: Introduction to Golang Backend Development
+Date: 2023-06-25
+
+Today, I started learning about Golang (Go) for backend development, a statically typed, compiled language designed by Google. Golang is known for its simplicity, efficiency, and robust concurrency support, making it ideal for developing scalable web services and APIs.
+
+Go's syntax is concise and easy to understand, which aids in writing clean and maintainable code. Its built-in concurrency model, powered by goroutines and channels, allows developers to efficiently handle multiple tasks simultaneously, a crucial feature for backend systems.
+
+The language is also praised for its performance, comparable to C/C++, due to its compiled nature. Additionally, Golang has a strong standard library that simplifies tasks such as HTTP handling, JSON parsing, and database interaction.
+
+I explored frameworks like Gin and Echo that provide additional functionality and streamline the development process. Golang's growing community and extensive documentation are excellent resources for new developers.
+
+Overall, Golang presents a compelling option for backend development, balancing performance, simplicity, and scalability. As I continue to learn, I aim to build a small web service to apply these concepts practically.

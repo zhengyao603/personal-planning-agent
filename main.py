@@ -3,7 +3,7 @@ import pyttsx3
 import tempfile
 import gradio as gr
 
-from component.agent import SchedulePlanningAgent
+from component.agent import PlanningAgent
 
 def audio_to_text(audio_input):
     transcription_model = whisper.load_model("base")
@@ -11,7 +11,7 @@ def audio_to_text(audio_input):
     return transcription_result["text"]
 
 def agent_response(text_input):
-    planning_agent = SchedulePlanningAgent()
+    planning_agent = PlanningAgent()
     planning_agent_response = planning_agent.full_chain.invoke({"input": text_input})["output"]
     return planning_agent_response
 

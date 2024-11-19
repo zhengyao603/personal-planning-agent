@@ -88,3 +88,31 @@ def get_chroma_toolkit() -> List[StructuredTool]:
     )
 
     return [memo_create_tool, memo_edit_tool, memo_delete_tool]
+
+if __name__ == "__main__":
+    from dotenv import load_dotenv
+    load_dotenv()
+
+    memo_create("Understanding Machine Learning Basics", "2023-04-15", """Today, I delved into the fundamentals of machine learning (ML), a subfield of artificial intelligence that focuses on building systems capable of learning from data and improving their performance over time without explicit programming. The core idea is to use algorithms to parse data, learn from it, and then make informed decisions based on the learned patterns.
+
+Key concepts include supervised and unsupervised learning. Supervised learning involves training a model on a labeled dataset, meaning the output is known. Common algorithms in this category are linear regression and decision trees. Unsupervised learning, on the other hand, deals with unlabeled data, and the system tries to find hidden patterns or intrinsic structures. Clustering and association are popular techniques here.
+
+Understanding the importance of data quality and preprocessing is crucial, as garbage in results in garbage out. Feature selection and extraction are vital steps that enhance model performance. Tools like Python's scikit-learn library are invaluable for implementing these algorithms.
+
+Overall, machine learning is transforming industries by enabling data-driven decision-making, and mastering its basics is essential for future technological advancements.""")
+    memo_create("Exploring Cloud Computing", "2023-05-10", """Today, I explored cloud computing, a paradigm that enables on-demand network access to a shared pool of configurable computing resources. This includes servers, storage, applications, and services that can be rapidly provisioned with minimal management effort.
+
+Cloud computing is categorized into three main service models: Infrastructure as a Service (IaaS), Platform as a Service (PaaS), and Software as a Service (SaaS). IaaS provides virtualized computing resources over the internet, PaaS offers a platform allowing customers to develop, run, and manage applications, and SaaS delivers software applications over the web.
+
+The benefits of cloud computing are significant, including cost efficiency, scalability, flexibility, and improved collaboration. However, it also comes with challenges such as security concerns and potential downtime.
+
+Major providers like Amazon Web Services (AWS), Microsoft Azure, and Google Cloud Platform offer a variety of services that cater to different organizational needs. As businesses increasingly shift to the cloud, understanding these services and their applications is critical for leveraging digital transformation.""")
+    memo_create("Introduction to Golang Backend Development", "2023-06-25", """Today, I started learning about Golang (Go) for backend development, a statically typed, compiled language designed by Google. Golang is known for its simplicity, efficiency, and robust concurrency support, making it ideal for developing scalable web services and APIs.
+
+Go's syntax is concise and easy to understand, which aids in writing clean and maintainable code. Its built-in concurrency model, powered by goroutines and channels, allows developers to efficiently handle multiple tasks simultaneously, a crucial feature for backend systems.
+
+The language is also praised for its performance, comparable to C/C++, due to its compiled nature. Additionally, Golang has a strong standard library that simplifies tasks such as HTTP handling, JSON parsing, and database interaction.
+
+I explored frameworks like Gin and Echo that provide additional functionality and streamline the development process. Golang's growing community and extensive documentation are excellent resources for new developers.
+
+Overall, Golang presents a compelling option for backend development, balancing performance, simplicity, and scalability. As I continue to learn, I aim to build a small web service to apply these concepts practically.""")

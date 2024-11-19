@@ -21,3 +21,4 @@
 
 # python runtime cache
 __pycache__/
+/chroma/chroma/

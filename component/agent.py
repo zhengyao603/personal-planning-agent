@@ -18,12 +18,12 @@ from mysql.mysql_toolkit import get_mysql_toolkit
 from chroma.chroma_config import get_chroma_db
 from chroma.chroma_toolkit import get_chroma_toolkit
 
-class SchedulePlanningAgent:
+class PlanningAgent:
     _instance = None
 
     def __new__(cls, *args, **kwargs):
         if cls._instance is None:
-            cls._instance = super(SchedulePlanningAgent, cls).__new__(cls, *args, **kwargs)
+            cls._instance = super(PlanningAgent, cls).__new__(cls, *args, **kwargs)
         return cls._instance
 
     def __init__(self):
